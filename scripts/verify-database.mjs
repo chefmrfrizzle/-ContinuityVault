@@ -16,10 +16,15 @@ const migrations = await sql.query(
   "select count(*)::int as count from drizzle.__drizzle_migrations",
   [],
 );
+const subscriptions = await sql.query(
+  "select count(*)::int as count from subscriptions",
+  [],
+);
 
 console.log(
   JSON.stringify({
     publicTables: tables[0].count,
     migrations: migrations[0].count,
+    subscriptions: subscriptions[0].count,
   }),
 );
