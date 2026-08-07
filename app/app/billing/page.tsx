@@ -5,7 +5,12 @@ import { integrationAvailability } from "@/lib/integrations/availability";
 
 export const metadata = { title: "Billing" };
 
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ checkout?: string }>;
+}) {
+  const { checkout } = await searchParams;
   const ready =
     integrationAvailability("stripe").configured &&
     integrationAvailability("upstash").configured;
@@ -27,7 +32,7 @@ export default function Page() {
           <p className="mt-2 text-[var(--cv-ink-soft)]">
             Use Stripe test cards here. No real charge will be made.
           </p>
-          <BillingActions ready={ready} />
+          <BillingActions ready={ready} checkoutStatus={checkout} />
         </section>
         <section className="border border-[var(--cv-line)] bg-[var(--cv-paper-deep)] p-6">
           <Lock />
