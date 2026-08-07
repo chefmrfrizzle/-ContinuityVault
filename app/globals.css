@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --cv-ink: #10201a;
+  --cv-ink-soft: #32443c;
+  --cv-forest: #173f32;
+  --cv-forest-deep: #0d2a21;
+  --cv-mint: #baf5d1;
+  --cv-acid: #d7ff89;
+  --cv-paper: #f4f3ed;
+  --cv-paper-deep: #e8e7df;
+  --cv-success: #2f7d57;
+  --cv-warning: #9a6a25;
+  --cv-danger: #a7473f;
+  --cv-line: rgba(16, 32, 26, 0.14);
+}
+
+* {
+  border-color: var(--cv-line);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--cv-paper);
+  color: var(--cv-ink);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  min-width: 320px;
+}
+::selection {
+  background: var(--cv-mint);
+  color: var(--cv-forest-deep);
+}
+a {
+  transition: color 160ms ease;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cv-forest);
+  outline-offset: 3px;
+}
+.font-mono {
+  font-family: var(--font-geist-mono), monospace;
+}
+.grid-lines {
+  background-image:
+    linear-gradient(var(--cv-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cv-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.text-balance {
+  text-wrap: balance;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,22 @@
+# dependencies and build output
+/node_modules
+/.next
+/out
+/coverage
+/playwright-report
+/test-results
+*.tsbuildinfo
+
+# secrets and local provider state
+.env
+.env.*
+!.env.example
+.vercel
+
+# editor and OS
+.DS_Store
+Thumbs.db
+.idea
+.vscode/*
+!.vscode/extensions.json
+
