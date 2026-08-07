@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { AlertTriangle, Check, Download, FileLock2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/status-badge";
@@ -80,9 +83,11 @@ export function PlanWorkspace({
   );
 }
 function Overview() {
+  const [nextCheckIn, setNextCheckIn] = useState("31 Aug 2026");
+
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
-      <CheckInPanel />
+      <CheckInPanel onComplete={() => setNextCheckIn("6 Sep 2026")} />
       <div className="border border-[var(--cv-line)] bg-[#fbfaf6] p-6">
         <p className="font-mono text-xs uppercase tracking-[.13em]">
           Plan summary
@@ -90,7 +95,7 @@ function Overview() {
         <dl className="mt-5 grid gap-4">
           {[
             ["Status", "Practice plan active"],
-            ["Next check-in", "31 Aug 2026"],
+            ["Next check-in", nextCheckIn],
             ["Trusted people", "3 of 3 ready"],
             ["Last practice run", "Passed 18 Jul"],
           ].map(([k, v]) => (

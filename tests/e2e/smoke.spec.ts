@@ -21,6 +21,17 @@ test("dashboard exposes the four required plan facts", async ({ page }) => {
   await expect(page.getByText("Passed 18 Jul")).toBeVisible();
 });
 
+test("practice check-in updates the visible next date", async ({ page }) => {
+  await page.goto("/app/plans/demo-plan");
+  await page
+    .getByRole("button", { name: "I'm okay — start the next 30 days" })
+    .click();
+  await expect(
+    page.getByRole("heading", { name: "You checked in." }),
+  ).toBeVisible();
+  await expect(page.getByText("6 Sep 2026")).toBeVisible();
+});
+
 test("test package is encrypted and exported locally", async ({ page }) => {
   await page.goto("/app/plans/new");
   await page.getByLabel("Practice password").fill("harmless-test-passphrase");

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { CheckCircle2, RadioTower } from "lucide-react";
 import { Button } from "@/components/ui/button";
-export function CheckInPanel() {
+export function CheckInPanel({ onComplete }: { onComplete?: () => void }) {
   const [complete, setComplete] = useState(false);
   if (complete)
     return (
@@ -25,7 +25,10 @@ export function CheckInPanel() {
         practice mode, nothing is saved or sent.
       </p>
       <Button
-        onClick={() => setComplete(true)}
+        onClick={() => {
+          setComplete(true);
+          onComplete?.();
+        }}
         className="mt-6 bg-[var(--cv-acid)] text-[var(--cv-forest-deep)] hover:bg-[var(--cv-mint)]"
       >
         I&apos;m okay — start the next 30 days
