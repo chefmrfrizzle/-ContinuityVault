@@ -11,6 +11,7 @@
 .env
 .env.*
 !.env.example
+# Vercel project metadata stays local.
 .vercel
 
 # editor and OS
@@ -19,4 +20,3 @@ Thumbs.db
 .idea
 .vscode/*
 !.vscode/extensions.json
-
