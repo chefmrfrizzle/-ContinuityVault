@@ -41,8 +41,8 @@ export default function PricingPage() {
         Infrastructure for a plan that stays ready.
       </h1>
       <p className="mt-6 max-w-2xl text-xl leading-8 text-[var(--cv-ink-soft)]">
-        Pricing is a product assumption and will be configured through Stripe.
-        Billing never influences release authorization.
+        Start with a practice plan, or choose the amount of support you need.
+        Payment never controls whether a package is shared.
       </p>
       <div className="mt-14 grid border-l border-t border-[var(--cv-line)] md:grid-cols-2 lg:grid-cols-4">
         {plans.map(([name, price, term, items], i) => (
@@ -69,7 +69,11 @@ export default function PricingPage() {
               ))}
             </ul>
             <Button
-              href={i === 0 ? "/app/onboarding" : "/sign-up"}
+              href={
+                i === 0
+                  ? "/app/onboarding"
+                  : `/app/billing?tier=${String(name).toLowerCase()}`
+              }
               tone={i === 1 ? "primary" : "secondary"}
               className="mt-auto"
             >

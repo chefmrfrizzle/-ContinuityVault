@@ -1,9 +1,15 @@
 import { CreditCard, Lock } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { BillingActions } from "@/components/billing-actions";
 import { StatusBadge } from "@/components/ui/status-badge";
+import { integrationAvailability } from "@/lib/integrations/availability";
+
 export const metadata = { title: "Billing" };
+
 export default function Page() {
-  const ready = Boolean(process.env.STRIPE_SECRET_KEY);
+  const ready =
+    integrationAvailability("stripe").configured &&
+    integrationAvailability("upstash").configured;
+
   return (
     <>
       <StatusBadge tone={ready ? "healthy" : "warning"}>
@@ -11,26 +17,27 @@ export default function Page() {
       </StatusBadge>
       <h1 className="mt-4 text-5xl font-semibold tracking-[-.05em]">Billing</h1>
       <p className="mt-4 max-w-2xl text-lg leading-7 text-[var(--cv-ink-soft)]">
-        Subscriptions fund monitoring and rehearsals. Billing state is isolated
-        from release authorization.
+        Choose a plan or manage an existing subscription. Billing can never
+        approve or trigger sharing.
       </p>
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
         <section className="border border-[var(--cv-line)] bg-[#fbfaf6] p-6">
           <CreditCard />
-          <h2 className="mt-5 text-2xl font-semibold">Test Mode</h2>
+          <h2 className="mt-5 text-2xl font-semibold">Test payments</h2>
           <p className="mt-2 text-[var(--cv-ink-soft)]">
-            Free prototype · no Stripe customer
+            Use Stripe test cards here. No real charge will be made.
           </p>
-          <Button disabled={!ready} className="mt-8">
-            Open billing portal
-          </Button>
+          <BillingActions ready={ready} />
         </section>
         <section className="border border-[var(--cv-line)] bg-[var(--cv-paper-deep)] p-6">
           <Lock />
-          <h2 className="mt-5 text-2xl font-semibold">Release isolation</h2>
+          <h2 className="mt-5 text-2xl font-semibold">
+            Billing stays separate
+          </h2>
           <p className="mt-3 leading-7 text-[var(--cv-ink-soft)]">
-            Payment failure may restrict paid features, but it can never advance
-            a workflow or destroy the only export.
+            A failed or cancelled payment may change paid features. It cannot
+            move a continuity plan forward, share a package, or delete the only
+            export.
           </p>
         </section>
       </div>
