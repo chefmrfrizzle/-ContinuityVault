@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Show, UserButton } from "@clerk/nextjs";
 import {
   Activity,
   CreditCard,
@@ -22,6 +23,7 @@ const links = [
 ] as const;
 
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const authConfigured = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
   return (
     <div className="min-h-screen bg-[var(--cv-paper)]">
       <header className="border-b border-[var(--cv-line)] bg-[#fbfaf6] lg:hidden">
@@ -41,7 +43,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             Practice mode
           </p>
           <p className="mt-2 text-xs leading-5 text-[var(--cv-ink-soft)]">
-            Use made-up information only. Nothing will be sent.
+            Use made-up information only. Payments and messages stay in test
+            mode.
           </p>
         </div>
         <nav className="mt-8 grid gap-1" aria-label="Application">
@@ -57,10 +60,36 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           ))}
         </nav>
         <div className="mt-auto border-t border-[var(--cv-line)] pt-4">
-          <p className="text-sm font-semibold">Practice account</p>
-          <p className="mt-1 font-mono text-[10px] uppercase tracking-[.12em] text-[var(--cv-ink-soft)]">
-            Not signed in
-          </p>
+          {authConfigured ? (
+            <Show
+              when="signed-in"
+              fallback={
+                <>
+                  <p className="text-sm font-semibold">Practice account</p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[.12em] text-[var(--cv-ink-soft)]">
+                    Sign in for provider tests
+                  </p>
+                </>
+              }
+            >
+              <div className="flex items-center gap-3">
+                <UserButton />
+                <div>
+                  <p className="text-sm font-semibold">Practice account</p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[.12em] text-[var(--cv-success)]">
+                    Signed in securely
+                  </p>
+                </div>
+              </div>
+            </Show>
+          ) : (
+            <>
+              <p className="text-sm font-semibold">Practice account</p>
+              <p className="mt-1 font-mono text-[10px] uppercase tracking-[.12em] text-[var(--cv-ink-soft)]">
+                Authentication unavailable
+              </p>
+            </>
+          )}
         </div>
       </aside>
       <main className="lg:pl-64">

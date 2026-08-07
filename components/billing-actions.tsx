@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import type { BillingInterval, BillingTier } from "@/lib/billing/catalog";
 
-export function BillingActions({ ready }: { ready: boolean }) {
+export function BillingActions({
+  ready,
+  checkoutStatus,
+}: {
+  ready: boolean;
+  checkoutStatus?: string;
+}) {
   const router = useRouter();
   const [pending, setPending] = useState<string>();
   const [message, setMessage] = useState<string>();
@@ -100,6 +106,16 @@ export function BillingActions({ ready }: { ready: boolean }) {
       {message ? (
         <p role="status" className="text-sm text-[var(--cv-danger)]">
           {message}
+        </p>
+      ) : null}
+      {!message && checkoutStatus === "success" ? (
+        <p role="status" className="text-sm text-[var(--cv-success)]">
+          Test payment succeeded. Stripe is updating your practice subscription.
+        </p>
+      ) : null}
+      {!message && checkoutStatus === "cancelled" ? (
+        <p role="status" className="text-sm text-[var(--cv-ink-soft)]">
+          No payment was made.
         </p>
       ) : null}
     </div>
