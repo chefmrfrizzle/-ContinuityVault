@@ -10,7 +10,10 @@ export class IntegrationUnavailableError extends Error {
 }
 
 export function getDb() {
-  const url = process.env.DATABASE_URL;
+  const url =
+    process.env.POSTGRES_URL ??
+    process.env.DATABASE_URL_UNPOOLED ??
+    process.env.DATABASE_URL;
   if (!url) throw new IntegrationUnavailableError("Neon Postgres");
   return drizzle(neon(url), { schema });
 }

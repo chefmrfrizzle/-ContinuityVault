@@ -42,6 +42,27 @@
   identifiers and package hashes appear only in optional technical details or
   operator-facing surfaces.
 
+### D-008 — provider-backed test services before live operations
+
+- Decision: Clerk, Neon, Upstash, Resend, and Stripe are connected in test or
+  sandbox mode first. Stripe billing and notification delivery remain isolated
+  from continuity-plan state transitions.
+- Reason: End-to-end provider behavior can be verified without accepting real
+  payments or sending operational reminders.
+- Consequence: Stripe Checkout uses test prices and signed, replay-protected
+  webhooks. Resend uses its restricted onboarding sender until a custom domain
+  is verified. Twilio remains unavailable until an account and test number are
+  configured.
+
+### D-009 — Vercel Marketplace environment aliases
+
+- Decision: Runtime adapters accept Vercel Marketplace variable names in
+  addition to the provider-native names documented in the original plan.
+- Reason: Neon supplies pooled and migration URLs separately, and Upstash
+  supplies `KV_REST_API_*` names.
+- Consequence: Application traffic prefers the pooled Neon URL, migrations use
+  the unpooled URL, and the original names remain supported for portability.
+
 ## Unresolved questions
 
 - Launch jurisdictions and qualified legal reviewer.

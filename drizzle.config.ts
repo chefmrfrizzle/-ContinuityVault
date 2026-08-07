@@ -6,7 +6,10 @@ export default defineConfig({
   dialect: "postgresql",
   dbCredentials: {
     url:
-      process.env.DATABASE_URL ?? "postgresql://build-only.invalid/continuity",
+      process.env.POSTGRES_URL_NON_POOLING ??
+      process.env.DATABASE_URL_UNPOOLED ??
+      process.env.DATABASE_URL ??
+      "postgresql://build-only.invalid/continuity",
   },
   strict: true,
 });
