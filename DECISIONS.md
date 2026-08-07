@@ -30,6 +30,18 @@
 
 - Decision: the deployable dependency set must have no known high or critical production advisories. Development-only Drizzle Kit tooling currently reports moderate transitive advisories and is not included in the runtime bundle.
 
+### D-007 — plain-language interface, exact internal policy
+
+- Decision: Owner-facing screens use everyday terms such as "trusted people",
+  "practice run", "locked package", and "people who must agree". Internal
+  schemas, event names, and safety documentation retain exact terms such as
+  recipient, rehearsal, ciphertext, and quorum.
+- Reason: The primary interface must be understandable to older and
+  non-technical customers without weakening or hiding the safety rules.
+- Consequence: Each safety choice includes a visible explanation. Technical
+  identifiers and package hashes appear only in optional technical details or
+  operator-facing surfaces.
+
 ## Unresolved questions
 
 - Launch jurisdictions and qualified legal reviewer.

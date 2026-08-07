@@ -13,8 +13,8 @@ import { StatusBadge } from "@/components/ui/status-badge";
 
 const links = [
   ["/app", "Overview", LayoutDashboard],
-  ["/app/plans/demo-plan", "Plan workspace", FileCheck2],
-  ["/app/plans/demo-plan/recipients", "Recipients", Users],
+  ["/app/plans/demo-plan", "My plan", FileCheck2],
+  ["/app/plans/demo-plan/recipients", "Trusted people", Users],
   ["/app/plans/demo-plan/activity", "Activity", Activity],
   ["/app/billing", "Billing", CreditCard],
   ["/app/settings/security", "Security", LockKeyhole],
@@ -38,10 +38,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </Link>
         <div className="mt-8 rounded-md border border-[var(--cv-warning)]/25 bg-[#f7eddb] p-3">
           <p className="font-mono text-[10px] uppercase tracking-[.14em] text-[var(--cv-warning)]">
-            Unaudited test mode
+            Practice mode
           </p>
           <p className="mt-2 text-xs leading-5 text-[var(--cv-ink-soft)]">
-            Synthetic preview data. Real protected material is disabled.
+            Use made-up information only. Nothing will be sent.
           </p>
         </div>
         <nav className="mt-8 grid gap-1" aria-label="Application">
@@ -57,9 +57,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           ))}
         </nav>
         <div className="mt-auto border-t border-[var(--cv-line)] pt-4">
-          <p className="text-sm font-semibold">Synthetic owner</p>
+          <p className="text-sm font-semibold">Practice account</p>
           <p className="mt-1 font-mono text-[10px] uppercase tracking-[.12em] text-[var(--cv-ink-soft)]">
-            No live account session
+            Not signed in
           </p>
         </div>
       </aside>

@@ -1,5 +1,5 @@
 import { PlanWorkspace } from "@/components/plans/plan-workspace";
-export const metadata = { title: "Plan workspace" };
+export const metadata = { title: "My plan" };
 export default async function Page({
   params,
 }: {

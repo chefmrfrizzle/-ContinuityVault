@@ -24,28 +24,30 @@ export function Dashboard() {
             Good afternoon.
           </h1>
           <p className="mt-3 text-[var(--cv-ink-soft)]">
-            One synthetic test plan is ready for review.
+            Your practice plan is ready.
           </p>
         </div>
-        <Button href="/app/plans/new">Create test plan</Button>
+        <Button href="/app/onboarding">Create another plan</Button>
       </div>
       <section className="mt-10 border border-[var(--cv-line)] bg-[#fbfaf6]">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--cv-line)] px-5 py-4">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[.14em] text-[var(--cv-ink-soft)]">
-              Personal continuity · sample
+              Practice plan · household
             </p>
             <h2 className="mt-1 text-xl font-semibold">Household essentials</h2>
           </div>
-          <StatusBadge tone="healthy">Armed simulation</StatusBadge>
+          <StatusBadge tone="healthy">Practice plan active</StatusBadge>
         </div>
         <div className="grid lg:grid-cols-[1.2fr_.8fr]">
           <div className="p-5 sm:p-7">
             <div className="rounded-md bg-[var(--cv-forest-deep)] p-6 text-white sm:p-8">
               <div className="flex items-center gap-2 text-sm font-semibold text-[var(--cv-mint)]">
-                <RadioTower size={16} /> Monitoring signal
+                <RadioTower size={16} /> Your next check-in
               </div>
-              <p className="mt-7 text-sm text-white/60">Next secure check-in</p>
+              <p className="mt-7 text-sm text-white/60">
+                We will ask if you are okay in
+              </p>
               <p className="mt-1 text-5xl font-semibold tracking-[-.06em] sm:text-6xl">
                 24 days
               </p>
@@ -66,7 +68,11 @@ export function Dashboard() {
             </p>
             {[
               { Icon: Users, label: "Recipients", value: "3 of 3 ready" },
-              { Icon: ShieldCheck, label: "Rehearsal", value: "Passed 18 Jul" },
+              {
+                Icon: ShieldCheck,
+                label: "Practice run",
+                value: "Passed 18 Jul",
+              },
               { Icon: Clock3, label: "Final hold", value: "48 hours" },
             ].map(({ Icon, label, value }) => (
               <div
@@ -119,9 +125,9 @@ export function Dashboard() {
           </div>
           <ol className="mt-5 grid gap-4">
             {[
-              "Synthetic rehearsal receipt created",
-              "Recipient readiness simulated",
-              "Test policy version 1 saved",
+              "Practice run completed",
+              "Trusted people checked",
+              "Safety rules saved",
             ].map((item, i) => (
               <li key={item} className="flex gap-4">
                 <span className="mt-2 size-2 rounded-full bg-[var(--cv-success)]" />
@@ -136,16 +142,16 @@ export function Dashboard() {
           </ol>
         </section>
         <section className="border border-[var(--cv-line)] bg-[var(--cv-paper-deep)] p-6">
-          <h2 className="text-lg font-semibold">Security boundary</h2>
+          <h2 className="text-lg font-semibold">Practice-mode limits</h2>
           <p className="mt-4 leading-7 text-[var(--cv-ink-soft)]">
-            This preview stores no plan data. Real package upload and delivery
-            remain unavailable until independent review.
+            This practice version stores no plan information and sends nothing.
+            Real information stays disabled until the security review is done.
           </p>
           <Link
             href="/security"
             className="mt-6 inline-flex items-center gap-2 text-sm font-semibold"
           >
-            Review the boundary <ArrowRight size={15} />
+            Learn how your information is protected <ArrowRight size={15} />
           </Link>
         </section>
       </div>

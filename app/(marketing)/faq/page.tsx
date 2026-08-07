@@ -2,23 +2,23 @@ export const metadata = { title: "FAQ" };
 const items = [
   [
     "Can Continuity Vault read my package?",
-    "No. The intended architecture keeps plaintext and unwrapped content keys in your browser. This prototype supports harmless test packages only.",
+    "No. Your browser locks the information before the service receives anything, and we do not get the key needed to read it. For now, use made-up practice information only.",
   ],
   [
     "Does a missed text deliver anything?",
-    "No. A message is a reminder, never authorization. Missed check-ins begin a staged process with grace periods, authenticated responses, quorum, and a final hold.",
+    "No. A message is only a reminder. We remind you, wait, ask trusted people to agree, and then wait again before anything can be shared.",
   ],
   [
     "Can support force a release?",
-    "No. Operators can freeze or resolve blockers within policy; they cannot decrypt, skip quorum, shorten a hold, or force delivery.",
+    "No. Support can stop the process or help fix a problem. It cannot read your package, skip the people who must agree, shorten a waiting period, or force sharing.",
   ],
   [
     "What if a provider is down?",
-    "The affected release freezes. Provider failure or uncertainty can never move a plan closer to delivery.",
+    "The process stops. A service outage or uncertainty can never move a plan closer to sharing.",
   ],
   [
     "Do recipients pay?",
-    "No. Recipients use free accounts to authenticate and receive an authorized test or eventual reviewed delivery.",
+    "No. Trusted people use free accounts to sign in and receive an approved practice message or, after launch, a locked package.",
   ],
   [
     "Is this a replacement for an executor or attorney?",

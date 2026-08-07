@@ -23,7 +23,7 @@ export function SiteHeader() {
           <Button href="/sign-in" tone="quiet">
             Sign in
           </Button>
-          <Button href="/app/onboarding">Start test plan</Button>
+          <Button href="/app/onboarding">Try a practice plan</Button>
         </div>
         <Link
           href="/app"

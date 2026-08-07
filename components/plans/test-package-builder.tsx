@@ -22,7 +22,7 @@ function downloadJson(filename: string, value: unknown) {
 
 export function TestPackageBuilder() {
   const [text, setText] = useState(
-    "Synthetic rehearsal note: verify the sample handoff and confirm the cancellation path.",
+    "This is a practice message for my family. Please confirm that you can open the practice file.",
   );
   const [passphrase, setPassphrase] = useState("");
   const [confirmed, setConfirmed] = useState(false);
@@ -36,7 +36,7 @@ export function TestPackageBuilder() {
     setError("");
     setResult(null);
     if (!confirmed)
-      return setError("Confirm that this is harmless synthetic test material.");
+      return setError("Please confirm that you are using made-up information.");
     try {
       const provider = new TestOnlyWebCryptoProvider();
       const created = await provider.createPackage({
@@ -66,18 +66,17 @@ export function TestPackageBuilder() {
         <div className="flex gap-3">
           <ShieldAlert className="shrink-0 text-[var(--cv-warning)]" />
           <div>
-            <p className="font-semibold">Test-package mode only</p>
+            <p className="font-semibold">Practice only</p>
             <p className="mt-1 text-sm leading-6 text-[var(--cv-ink-soft)]">
-              Use harmless synthetic text. Nothing is uploaded; encryption and
-              downloads occur locally. This provisional implementation is not
-              approved for real protected material.
+              Use made-up information. This stays on this device and is not
+              saved to your account.
             </p>
           </div>
         </div>
       </div>
       <div className="grid gap-6 p-5 sm:p-7">
         <label className="grid gap-2 font-semibold">
-          Harmless rehearsal text
+          Practice note
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -91,11 +90,11 @@ export function TestPackageBuilder() {
           id="package-hint"
           className="-mt-4 text-xs text-[var(--cv-ink-soft)]"
         >
-          Never enter names, credentials, legal documents, recovery data,
-          personal details, or real instructions.
+          Example: &ldquo;This is a practice message for my family.&rdquo; Do
+          not enter names, passwords, documents, or real instructions yet.
         </p>
         <label className="grid gap-2 font-semibold">
-          Local test recovery passphrase
+          Practice password
           <input
             type="password"
             value={passphrase}
@@ -103,8 +102,15 @@ export function TestPackageBuilder() {
             minLength={12}
             autoComplete="new-password"
             className="min-h-12 rounded-md border border-[var(--cv-line)] bg-white px-4 font-normal"
+            aria-describedby="password-hint"
           />
         </label>
+        <p
+          id="password-hint"
+          className="-mt-4 text-xs leading-5 text-[var(--cv-ink-soft)]"
+        >
+          Use at least 12 characters. We cannot reset this password.
+        </p>
         <label className="flex items-start gap-3 text-sm leading-6">
           <input
             type="checkbox"
@@ -113,8 +119,8 @@ export function TestPackageBuilder() {
             className="mt-1 size-5"
           />
           <span>
-            I confirm this is harmless synthetic test material and understand
-            the company cannot recover this local test passphrase.
+            I understand this is a practice. I am using made-up information
+            only.
           </span>
         </label>
         {error && (
@@ -126,16 +132,17 @@ export function TestPackageBuilder() {
           </p>
         )}
         <Button onClick={create} className="w-fit">
-          <FileLock2 size={16} /> Create local test package
+          <FileLock2 size={16} /> Lock my practice package
         </Button>
         {result && (
           <div
             aria-live="polite"
             className="border border-[var(--cv-success)]/30 bg-[var(--cv-mint)]/35 p-5"
           >
-            <p className="font-semibold">Local encryption complete</p>
-            <p className="mt-2 font-mono text-xs break-all">
-              SHA-256 · {result.package.ciphertextSha256}
+            <p className="font-semibold">Your practice package is locked.</p>
+            <p className="mt-2 text-sm leading-6 text-[var(--cv-ink-soft)]">
+              Download both files. Keep them in different safe places so one
+              lost file does not leave you without a backup.
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
               <Button
@@ -143,7 +150,7 @@ export function TestPackageBuilder() {
                   downloadJson("continuity-test-package.json", result.package)
                 }
               >
-                <Download size={16} /> Download ciphertext
+                <Download size={16} /> Download locked package
               </Button>
               <Button
                 tone="secondary"
@@ -151,13 +158,20 @@ export function TestPackageBuilder() {
                   downloadJson("continuity-test-recovery.json", result.recovery)
                 }
               >
-                <Download size={16} /> Download recovery kit
+                <Download size={16} /> Download recovery file
               </Button>
             </div>
             <p className="mt-4 text-xs leading-5 text-[var(--cv-ink-soft)]">
-              Keep the files separate for this rehearsal. Refresh clears the
-              in-memory key and result.
+              This practice result disappears when you refresh the page.
             </p>
+            <details className="mt-4 text-xs text-[var(--cv-ink-soft)]">
+              <summary className="cursor-pointer font-semibold">
+                Technical details
+              </summary>
+              <p className="mt-2 font-mono break-all">
+                SHA-256 · {result.package.ciphertextSha256}
+              </p>
+            </details>
           </div>
         )}
       </div>

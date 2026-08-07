@@ -3,21 +3,21 @@ export const metadata = { title: "How it works" };
 export default function Page() {
   return (
     <SitePage
-      eyebrow="The continuity protocol"
-      title="A careful process, not a dead-man switch."
-      intro="A missed check-in begins a staged verification sequence. Time, authenticated responses, quorum, integrity, and a final hold all matter. No single signal is enough."
+      eyebrow="How it works"
+      title="One missed check-in never shares anything."
+      intro="First we remind you. Then we wait. Trusted people must agree, and there is one last waiting period. If anything is unclear, the process stops."
       sections={[
         [
-          "Protect",
-          "Prepare a harmless test package locally. Your browser encrypts it; the service never needs the plaintext or an unwrapped key.",
+          "Prepare",
+          "Create a practice package on your device. Your browser locks it before the service can receive anything.",
         ],
         [
-          "Verify",
-          "Check in through your authenticated account. Reminders arrive by email or text, but messages alone never prove identity.",
+          "Check in",
+          "Sign in and tell us you are okay. Email and text messages are reminders only; replying to one cannot approve anything.",
         ],
         [
-          "Deliver",
-          "Only explicit deterministic policy can advance delivery. Conflicts, outages, integrity failures, or the global freeze stop the cycle.",
+          "Share safely",
+          "The locked package can be shared only after every safety step passes. Conflicting answers, outages, or security concerns stop the process.",
         ],
       ]}
     />

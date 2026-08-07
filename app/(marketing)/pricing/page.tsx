@@ -73,7 +73,7 @@ export default function PricingPage() {
               tone={i === 1 ? "primary" : "secondary"}
               className="mt-auto"
             >
-              {i === 0 ? "Start test plan" : "Choose plan"}
+              {i === 0 ? "Start practice plan" : "Choose plan"}
             </Button>
           </article>
         ))}

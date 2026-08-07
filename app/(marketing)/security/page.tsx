@@ -3,21 +3,21 @@ export const metadata = { title: "Security boundary" };
 export default function Page() {
   return (
     <SitePage
-      eyebrow="Security boundary"
-      title="Designed around what we must never know."
-      intro="The company coordinates state, timing, authenticated responses, and ciphertext delivery. It does not possess the recovery key required to read a package."
+      eyebrow="How we protect your information"
+      title="We run the safety steps. We cannot read your package."
+      intro="The service keeps track of time, check-ins, and answers from trusted people. It does not have the recovery key needed to read your package."
       sections={[
         [
-          "Only your browser sees plaintext",
-          "Package preparation and local decryption occur on your device. This prototype accepts harmless test content only.",
+          "Your device locks the information",
+          "Your package is created and opened on your device. This practice version accepts made-up information only.",
         ],
         [
-          "Channels are not identity",
-          "Email and SMS are delivery routes for neutral reminders and short-lived links. Secure actions require an authenticated session.",
+          "Messages are reminders, not permission",
+          "Email and text messages can remind you and provide short-lived links. Important actions require a secure sign-in.",
         ],
         [
-          "Fail closed by construction",
-          "Unknown states, conflicting evidence, provider incidents, package-integrity failure, and security freezes cannot advance release.",
+          "If anything is unclear, we stop",
+          "Unknown steps, conflicting answers, service outages, a damaged package, or a security concern cannot move the process forward.",
         ],
       ]}
     />

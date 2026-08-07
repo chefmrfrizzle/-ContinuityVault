@@ -8,9 +8,9 @@ import { CheckInPanel } from "@/components/plans/check-in-panel";
 const tabs = [
   ["", "Overview"],
   ["package", "Package"],
-  ["recipients", "Recipients"],
-  ["policy", "Policy"],
-  ["rehearsal", "Rehearsal"],
+  ["recipients", "Trusted people"],
+  ["policy", "Safety rules"],
+  ["rehearsal", "Practice run"],
   ["activity", "Activity"],
   ["export", "Export"],
 ];
@@ -21,7 +21,7 @@ const timeline = [
   ["+14 days", "Trusted contacts notified"],
   ["+21 days", "Verification may begin"],
   ["+28 days", "Final hold"],
-  ["+30 days", "Ciphertext may be eligible"],
+  ["+30 days", "Locked package may be ready to share"],
 ];
 
 export function PlanWorkspace({
@@ -37,13 +37,13 @@ export function PlanWorkspace({
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase tracking-[.16em] text-[var(--cv-ink-soft)]">
-            Personal continuity · synthetic
+            Practice plan · household
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-[-.05em]">
             Household essentials
           </h1>
         </div>
-        <StatusBadge tone="healthy">Armed simulation</StatusBadge>
+        <StatusBadge tone="healthy">Practice plan active</StatusBadge>
       </div>
       <nav
         className="mt-8 flex gap-1 overflow-x-auto border-b border-[var(--cv-line)]"
@@ -85,14 +85,14 @@ function Overview() {
       <CheckInPanel />
       <div className="border border-[var(--cv-line)] bg-[#fbfaf6] p-6">
         <p className="font-mono text-xs uppercase tracking-[.13em]">
-          Four facts
+          Plan summary
         </p>
         <dl className="mt-5 grid gap-4">
           {[
-            ["Status", "Armed simulation"],
+            ["Status", "Practice plan active"],
             ["Next check-in", "31 Aug 2026"],
-            ["Recipients", "3 of 3 test-ready"],
-            ["Last rehearsal", "Passed 18 Jul"],
+            ["Trusted people", "3 of 3 ready"],
+            ["Last practice run", "Passed 18 Jul"],
           ].map(([k, v]) => (
             <div
               key={k}
@@ -105,11 +105,11 @@ function Overview() {
         </dl>
       </div>
       <div className="border border-[var(--cv-line)] bg-[#fbfaf6] p-6 lg:col-span-2">
-        <h2 className="text-xl font-semibold">Important boundary</h2>
+        <h2 className="text-xl font-semibold">Practice-mode limits</h2>
         <p className="mt-3 leading-7 text-[var(--cv-ink-soft)]">
-          The simulated healthy state is a UI fixture, not evidence of a running
-          workflow. Production delivery is globally frozen and external
-          providers are not provisioned.
+          This page is a working demonstration, not a live service yet. It saves
+          nothing and sends nothing while the service connections and
+          independent security checks are still being completed.
         </p>
       </div>
     </div>
@@ -121,13 +121,14 @@ function Recipients() {
       <div className="flex justify-between gap-4">
         <div>
           <h2 className="text-3xl font-semibold tracking-[-.04em]">
-            Recipient readiness
+            Trusted people
           </h2>
           <p className="mt-2 text-[var(--cv-ink-soft)]">
-            Synthetic identities only. Recipients never need a paid plan.
+            Use made-up people in practice mode. Trusted people will never need
+            a paid plan.
           </p>
         </div>
-        <Button>Add test recipient</Button>
+        <Button>Add a practice person</Button>
       </div>
       <div className="mt-7 border border-[var(--cv-line)] bg-[#fbfaf6]">
         {["Primary recipient", "Trusted contact A", "Trusted contact B"].map(
@@ -156,9 +157,9 @@ function Recipients() {
         )}
       </div>
       <div className="mt-6 border-l-4 border-[var(--cv-warning)] bg-[#f7eddb] p-4 text-sm">
-        Adding, removing, or changing a real recipient requires step-up
-        authentication, old-channel notice, a cooling period, and a new
-        rehearsal.
+        When the live service is ready, changing a trusted person will require
+        you to sign in again, wait through a safety period, and complete a new
+        practice run.
       </div>
     </section>
   );
@@ -166,12 +167,10 @@ function Recipients() {
 function Policy() {
   return (
     <section>
-      <h2 className="text-3xl font-semibold tracking-[-.04em]">
-        Policy version 1
-      </h2>
+      <h2 className="text-3xl font-semibold tracking-[-.04em]">Safety rules</h2>
       <p className="mt-2 text-[var(--cv-ink-soft)]">
-        The timeline is stored as validated policy—not hard-coded into workflow
-        UI.
+        These are the steps the service must follow. A missed check-in never
+        shares anything by itself.
       </p>
       <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_.8fr]">
         <ol className="border-t border-[var(--cv-line)]">
@@ -186,14 +185,14 @@ function Policy() {
           ))}
         </ol>
         <div className="border border-[var(--cv-line)] bg-[#fbfaf6] p-6">
-          <h3 className="font-semibold">Authorization</h3>
+          <h3 className="font-semibold">People who must agree</h3>
           <p className="mt-3 text-3xl font-semibold">2 of 3</p>
           <p className="mt-2 leading-6 text-[var(--cv-ink-soft)]">
-            Authenticated trusted-contact responses. Any conflict freezes the
-            cycle.
+            Two of your three trusted people must agree. If anyone gives a
+            conflicting answer, the process stops.
           </p>
           <Button tone="secondary" className="mt-6">
-            Propose policy change
+            Change these safety rules
           </Button>
         </div>
       </div>
@@ -202,22 +201,22 @@ function Policy() {
 }
 function Rehearsal() {
   const checks = [
-    "Owner authentication simulated",
-    "Owner cancellation verified",
-    "Recipient channel test-ready",
-    "Quorum calculation passed",
-    "Local recovery file created",
-    "Test-package integrity verified",
+    "Your sign-in was checked",
+    "The stop button worked",
+    "Trusted people can receive a practice message",
+    "The required people agreed",
+    "The recovery file was created",
+    "The locked practice package was checked",
   ];
   return (
     <section>
-      <StatusBadge tone="healthy">Pass · synthetic</StatusBadge>
+      <StatusBadge tone="healthy">Practice run passed</StatusBadge>
       <h2 className="mt-5 text-3xl font-semibold tracking-[-.04em]">
-        Complete rehearsal
+        Practice run complete
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-[var(--cv-ink-soft)]">
-        This screen never accesses a real package or advances a real check-in
-        cycle.
+        This practice used made-up information. It did not open a real package,
+        send a message, or change a live check-in.
       </p>
       <div className="mt-7 grid gap-3">
         {checks.map((item) => (
@@ -232,7 +231,7 @@ function Rehearsal() {
           </div>
         ))}
       </div>
-      <Button className="mt-6">Run new synthetic rehearsal</Button>
+      <Button className="mt-6">Run the practice again</Button>
     </section>
   );
 }

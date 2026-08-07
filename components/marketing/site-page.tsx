@@ -45,7 +45,7 @@ export function SitePage({
         </div>
         <div className="mt-12">
           <Button href="/app/onboarding">
-            Build a test plan <ArrowRight size={16} />
+            Try a practice plan <ArrowRight size={16} />
           </Button>
         </div>
       </section>

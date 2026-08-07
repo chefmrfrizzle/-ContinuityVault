@@ -5,27 +5,66 @@ import { Button } from "@/components/ui/button";
 
 const steps = [
   {
-    title: "What continuity problem are you preparing for?",
-    copy: "Choose a harmless test scenario.",
+    title: "Who is this plan for?",
+    copy: "Choose the kind of plan you want to practise.",
     options: [
-      "Personal instructions",
-      "Household coordination",
-      "Founder or business operations",
-      "Digital-account continuity",
+      {
+        label: "Just me",
+        description: "Personal instructions and important information.",
+      },
+      {
+        label: "My household",
+        description: "Information that family members may need.",
+      },
+      {
+        label: "My business",
+        description: "Important steps if I cannot manage the business.",
+      },
+      {
+        label: "My online accounts",
+        description: "Instructions for accounts, devices, and digital files.",
+      },
     ],
   },
   {
-    title: "How often should the test plan check in?",
-    copy: "You will see the full staged timeline before saving.",
-    options: ["Every 14 days", "Every 30 days", "Every 90 days"],
+    title: "How often should we ask if you are okay?",
+    copy: "You can change this later. Missing one reminder does not share anything.",
+    options: [
+      {
+        label: "Every 2 weeks",
+        description: "More frequent. Good when things change often.",
+      },
+      {
+        label: "Every month",
+        description: "A simple, balanced choice for most people.",
+        badge: "Suggested",
+      },
+      {
+        label: "Every 3 months",
+        description: "Fewer check-ins. Good for a plan that rarely changes.",
+      },
+    ],
   },
   {
-    title: "What must be confirmed before delivery?",
-    copy: "Single-message authorization is never offered.",
+    title: "Who should agree before anything is shared?",
+    copy: "One missed check-in is never enough. Choose the extra safety checks you want.",
     options: [
-      "Two trusted contacts",
-      "Three-of-five quorum",
-      "Time delay plus two contacts",
+      {
+        label: "Two people must agree",
+        description:
+          "Two trusted contacts must both confirm before the waiting period can begin.",
+      },
+      {
+        label: "Three out of five people must agree",
+        description:
+          "At least three of five trusted contacts must confirm. If answers conflict, sharing stops.",
+      },
+      {
+        label: "Wait, then ask two people",
+        description:
+          "The system waits the full safety period, then two trusted contacts must agree. This gives you the most time to return.",
+        badge: "Most cautious",
+      },
     ],
   },
 ];
@@ -41,15 +80,14 @@ export function OnboardingFlow() {
           <Check />
         </span>
         <h2 className="mt-6 text-3xl font-semibold tracking-[-.04em]">
-          Test plan outline ready.
+          Your practice plan is ready to finish.
         </h2>
         <p className="mt-4 max-w-xl leading-7 text-[var(--cv-ink-soft)]">
-          Next, prepare a harmless local test package, add synthetic recipients,
-          run a rehearsal, and review the complete timeline before simulated
-          arming.
+          Next, add a practice note, choose trusted contacts, and try the whole
+          process from beginning to end. Nothing will be sent.
         </p>
         <Button href="/app/plans/new" className="mt-7">
-          Continue to plan workspace <ArrowRight size={16} />
+          Continue setting up my plan <ArrowRight size={16} />
         </Button>
       </div>
     );
@@ -74,7 +112,7 @@ export function OnboardingFlow() {
             size={18}
             className="shrink-0 text-[var(--cv-warning)]"
           />
-          Test mode accepts synthetic scenarios only.
+          Practice mode: use made-up information only.
         </div>
         <h2 className="mt-8 max-w-xl text-3xl font-semibold tracking-[-.04em]">
           {current?.title}
@@ -83,11 +121,25 @@ export function OnboardingFlow() {
         <div className="mt-7 grid gap-3">
           {current?.options.map((option) => (
             <button
-              key={option}
-              onClick={() => setChoices([...choices.slice(0, step), option])}
-              className={`min-h-14 rounded-md border p-4 text-left font-semibold ${choices[step] === option ? "border-[var(--cv-forest)] bg-[var(--cv-mint)]/30" : "border-[var(--cv-line)] bg-white hover:border-[var(--cv-forest)]"}`}
+              key={option.label}
+              type="button"
+              aria-pressed={choices[step] === option.label}
+              onClick={() =>
+                setChoices([...choices.slice(0, step), option.label])
+              }
+              className={`min-h-20 rounded-md border p-4 text-left ${choices[step] === option.label ? "border-[var(--cv-forest)] bg-[var(--cv-mint)]/30" : "border-[var(--cv-line)] bg-white hover:border-[var(--cv-forest)]"}`}
             >
-              {option}
+              <span className="flex flex-wrap items-center gap-2 font-semibold">
+                {option.label}
+                {option.badge && (
+                  <span className="rounded-full bg-[var(--cv-paper-deep)] px-2 py-1 text-[10px] uppercase tracking-[.08em] text-[var(--cv-ink-soft)]">
+                    {option.badge}
+                  </span>
+                )}
+              </span>
+              <span className="mt-1 block text-sm font-normal leading-6 text-[var(--cv-ink-soft)]">
+                {option.description}
+              </span>
             </button>
           ))}
         </div>
